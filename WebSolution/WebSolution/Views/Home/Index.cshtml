@@ -1,0 +1,348 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/knockout-3.5.1.js"></script>
+<script src="~/Scripts/knockout.validation.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.js"></script>
+<script src="~/Customjs/Index.js"></script>
+<style>
+
+    /*Media CSS*/
+
+    /*/ Extra small devices (phones, 600px and down) /*/
+    @@media only screen and (max-width: 600px) {
+        .table-cell {
+            display: table-cell;
+            width: 90px;
+            /*position: relative;*/
+            font-family: Times New Roman;
+            padding: 8px;
+            border: 1px solid #155da9;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .fontSize {
+            font-size: 12px !important
+        }
+    }
+
+    /*/ Small devices (portrait tablets and large phones, 600px and up) /*/
+    @@media only screen and (min-width: 600px) {
+        .table-cell {
+            display: table-cell;
+            width: 90px;
+            /*position: relative;*/
+            font-family: Times New Roman;
+            padding: 8px;
+            border: 1px solid #155da9;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .fontSize {
+            font-size: 12px !important
+        }
+    }
+
+    /*/ Medium devices (landscape tablets, 768px and up) /*/
+    @@media only screen and (min-width: 768px) {
+
+        .table-cell {
+            display: table-cell;
+            width: 130px;
+            /*position: relative;*/
+            font-family: Times New Roman;
+            padding: 8px;
+            border: 1px solid #155da9;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .fontSize {
+            font-size: 15px !important
+        }
+    }
+
+    /*/ Large devices (laptops/desktops, 992px and up) /*/
+    @@media only screen and (min-width: 992px) {
+        .table-cell {
+            display: table-cell;
+            width: 145px;
+            /*position: relative;*/
+            font-family: Times New Roman;
+            padding: 9px;
+            border: 1px solid #155da9;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .fontSize {
+            font-size: 18px !important
+        }
+    }
+
+    /*/ Extra large devices (large laptops and desktops, 1200px and up) /*/
+    @@media only screen and (min-width: 1281px) {
+        .table-cell {
+            display: table-cell;
+            width: 180px;
+            /*position: relative;*/
+            font-family: Times New Roman;
+            padding: 10px;
+            border: 1px solid #155da9;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .fontSize {
+            font-size: 20px !important
+        }
+    }
+
+
+
+
+
+    /*.form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .modal-content {
+        font-size: 12px;
+        margin-left: -40px;
+    }
+
+    .btn-outlined-info {
+        background: white;
+        color: #46b8da;
+        border-color: #46b8da;
+    }
+    .pointer:after {
+        font-family: "Glyphicons Halflings";
+        content: "\e113";
+        float: right;
+        margin-left: 15px;
+        margin-top: -15px;
+    }
+
+
+    .btn-for-file {
+        color: #fff !important;
+        background-color: #46b8da !important;
+    }
+    .pointer.collapsed:after {
+        content: "\e114";
+    }
+
+    a.disabled {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+
+    a.visible {
+        visibility: hidden;
+        display: none;
+    }*/
+
+
+    /*#resp-table {
+        width: 100%;
+        display: table;
+    }
+
+    #resp-table-caption {
+        display: table-caption;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    #resp-table-header {
+        display: table-header-group;
+        background-color: gray;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .table-header-cell {
+        display: table-cell;
+        padding: 10px;
+        text-align: justify;
+        border-bottom: 1px solid black;
+    }*/
+
+    /*#resp-table-body {
+        display: table-row-group;
+    }
+
+    .resp-table-row {
+        display: table-row;
+    }*/
+
+    /*.table-body-cell {
+        display: table-cell;
+    }*/
+
+    .table {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        /*word-wrap: break-word;*/
+    }
+
+    .table-row {
+        display: table-row;
+    }
+
+
+
+    /*.table-row:nth-child(even) {
+        background: lightblue;
+    }*/
+
+
+</style>
+
+<style>
+    /* Center the loader */
+    #loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #155da9;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+
+    @@-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Add animation to "page content" */
+    .animate-bottom {
+        position: relative;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: 1s;
+        animation-name: animatebottom;
+        animation-duration: 1s
+    }
+
+    @@-webkit-keyframes animatebottom {
+        from {
+            bottom: -100px;
+            opacity: 0
+        }
+
+        to {
+            bottom: 0px;
+            opacity: 1
+        }
+    }
+
+    @@keyframes animatebottom {
+        from {
+            bottom: -100px;
+            opacity: 0
+        }
+
+        to {
+            bottom: 0;
+            opacity: 1
+        }
+    }
+
+    #resp-table-header {
+        display: table-header-group;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+    }
+</style>
+<div class="panel-body rm" id="IndexVM">
+    <div class="panel-body">
+        <div class="container-fluid">
+
+            <div class="form-group row row_design">
+
+                <div class="col-sm-3">
+                    <input type="text" name="searchString" data-bind="value: tittle" class="form-control" id="searchString" placeholder="Search..." />
+                </div>
+                <div class="col-sm-1">
+                    <input type="submit" name="Submit" data-bind="click:SearchPost" value="Search" />
+                </div>
+            </div>
+        </div>
+        <div class="table">
+            <div data-bind="foreach: PostList">
+                <div class="table-row">
+                    <div class="table-cell">
+                        <span data-bind="text: PostTittle"></span>
+                    </div>
+                    <div class="table-cell">
+                        <span data-bind="text: CreateBy"></span>
+                    </div>
+                    <div class="table-cell">
+                        <span data-bind="text: CreateDate"></span>
+                    </div>
+                 
+                    <div data-bind="foreach: CommentsDtos">
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <span data-bind="text: Comment"></span>
+                            </div>
+                            <div class="table-cell">
+                                <span data-bind="text: CreateBy"></span>
+                            </div>
+                            <div class="table-cell">
+                                <span data-bind="text:CreateDate"></span>
+                            </div>
+                            <div class="table-cell">
+                               <button type="button" name="Submit" data-bind="click:$root.Like">Like</button> <span data-bind="text: TotalLike"></span>
+                            </div>
+                            <div class="table-cell">
+                                <button type="button" name="Submit" data-bind="click:$root.Dislike">Dis-Like</button><span data-bind="text: TotalDisLike"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
